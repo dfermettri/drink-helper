@@ -680,7 +680,40 @@ function calculateAllDrinkVolumesWithMilk(form, options = {}) {
 
 function setupResultsSection() {
   renderResultsTable();
+
+  const copyBtn = document.getElementById("results-copy");
+  const deleteBtn = document.getElementById("results-delete");
+  const tbody = document.querySelector("#results-table tbody");
+
+  if (copyBtn) {
+    copyBtn.addEventListener("click", () => {
+      const selected = tbody.querySelector("tr.results-selected");
+      if (!selected) {
+        alert("Выберите строку в таблице.");
+        return;
+      }
+      const id = selected.getAttribute("data-id");
+      const rec = savedResults.find((r) => r.id === id);
+      if (!rec) return;
+      copyResultToClipboard(rec);
+    });
+  }
+
+  if (deleteBtn) {
+    deleteBtn.addEventListener("click", () => {
+      const selected = tbody.querySelector("tr.results-selected");
+      if (!selected) {
+        alert("Выберите строку в таблице.");
+        return;
+      }
+      const id = selected.getAttribute("data-id");
+      savedResults = savedResults.filter((r) => r.id !== id);
+      saveToStorage(STORAGE_KEYS.RESULTS, savedResults);
+      renderResultsTable();
+    });
+  }
 }
+
 
 function renderResultsTable() {
   const tbody = document.querySelector("#results-table tbody");
@@ -689,7 +722,7 @@ function renderResultsTable() {
   if (!savedResults.length) {
     const row = document.createElement("tr");
     const cell = document.createElement("td");
-    cell.colSpan = 6;
+    cell.colSpan = 5; // стало 5 колонок
     cell.textContent = "Сохранённых расчётов пока нет.";
     row.appendChild(cell);
     tbody.appendChild(row);
@@ -698,6 +731,7 @@ function renderResultsTable() {
 
   savedResults.forEach((rec) => {
     const row = document.createElement("tr");
+    row.setAttribute("data-id", rec.id);
 
     const dateCell = document.createElement("td");
     const date = new Date(rec.date);
@@ -720,34 +754,20 @@ function renderResultsTable() {
       createMilkVariantsSummary("450", rec.volumes, rec.milkVariants)
     );
 
-    const actionsCell = document.createElement("td");
-    const copyBtn = document.createElement("button");
-    copyBtn.type = "button";
-    copyBtn.textContent = "Копировать";
-    copyBtn.addEventListener("click", () => {
-      copyResultToClipboard(rec);
-    });
-
-    const delBtn = document.createElement("button");
-    delBtn.type = "button";
-    delBtn.textContent = "Удалить";
-    delBtn.addEventListener("click", () => {
-      savedResults = savedResults.filter((r) => r.id !== rec.id);
-      saveToStorage(STORAGE_KEYS.RESULTS, savedResults);
-      renderResultsTable();
-    });
-
-    actionsCell.append(copyBtn, delBtn);
-
-    row.append(
-      dateCell,
-      nameCell,
-      vol250Cell,
-      vol350Cell,
-      vol450Cell,
-      actionsCell
-    );
+    row.append(dateCell, nameCell, vol250Cell, vol350Cell, vol450Cell);
     tbody.appendChild(row);
+  });
+
+  // выбор строки по клику
+  tbody.addEventListener("click", (event) => {
+    const tr = event.target.closest("tr");
+    if (!tr || !tr.hasAttribute("data-id")) return;
+
+    // снять выделение со всех
+    tbody.querySelectorAll("tr").forEach((row) =>
+      row.classList.remove("results-selected")
+    );
+    tr.classList.add("results-selected");
   });
 }
 
