@@ -1,0 +1,281 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  line-height: 1.5;
+  color: #1f2933;
+  background-color: #f5f7fa;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0 0 0.5rem;
+}
+
+header,
+main,
+footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+header {
+  border-bottom: 1px solid #d8e2ec;
+  margin-bottom: 1rem;
+}
+
+footer {
+  border-top: 1px solid #d8e2ec;
+  margin-top: 2rem;
+  font-size: 0.875rem;
+  color: #62748a;
+}
+
+/* Навигация */
+
+nav {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+nav button {
+  border: 1px solid #cbd2d9;
+  background-color: #ffffff;
+  color: #102a43;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+nav button[aria-pressed="true"] {
+  background-color: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+nav button:hover {
+  background-color: #e3edff;
+}
+
+/* Разделы (табы) */
+
+main > section {
+  display: none;
+  margin-bottom: 2rem;
+}
+
+main > section[data-active="true"] {
+  display: block;
+}
+
+/* Внутренние секции */
+
+main section > section {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  border: 1px solid #d8e2ec;
+}
+
+/* Формы */
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1.5rem;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 0.9rem;
+  color: #52606d;
+  margin-bottom: 0.25rem;
+}
+
+input,
+select,
+button {
+  font: inherit;
+}
+
+input,
+select {
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.35rem;
+  border: 1px solid #cbd2d9;
+  background-color: #ffffff;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
+  border-color: #2563eb;
+}
+
+/* Блок кнопок в формах */
+
+form > div:last-child {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+button {
+  border-radius: 0.4rem;
+  border: 1px solid transparent;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+}
+
+button[type="submit"],
+#drink-calc-btn,
+#drink-save-result,
+#prep-calc-btn,
+#prep-save-as-ingredient {
+  background-color: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+button[type="reset"],
+button[type="button"] {
+  background-color: #e4ebf5;
+  color: #102a43;
+  border-color: #cbd2d9;
+}
+
+button:hover {
+  filter: brightness(0.96);
+}
+
+/* Таблицы */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+thead {
+  background-color: #e4ebf5;
+}
+
+th,
+td {
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #d8e2ec;
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f8fafc;
+}
+
+table {
+  display: block;
+  overflow-x: auto;
+}
+
+/* Компоненты напитка и заготовок */
+
+#drink-components-250,
+#drink-components-350,
+#drink-components-450,
+#prep-components-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+#drink-components-250 > div,
+#drink-components-350 > div,
+#drink-components-450 > div,
+#prep-components-list > div {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  gap: 0.5rem;
+}
+
+/* Блоки результатов */
+
+section[aria-labelledby$="result-title"],
+section[aria-labelledby$="milk-variants-title"] {
+  background-color: #f8fafc;
+  border-style: dashed;
+}
+
+/* Адаптивность */
+
+@media (max-width: 768px) {
+  header,
+  main,
+  footer {
+    padding: 0.75rem;
+  }
+
+  form {
+    grid-template-columns: 1fr;
+  }
+
+  form > div:last-child {
+    justify-content: flex-start;
+  }
+
+  nav {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  nav button {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+}

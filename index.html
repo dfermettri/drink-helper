@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Калькулятор КБЖУ напитков</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Калькулятор КБЖУ напитков</h1>
+
+      <nav aria-label="Основные разделы калькулятора">
+        <button type="button" data-tab="drinks" aria-pressed="true">
+          Напитки
+        </button>
+        <button type="button" data-tab="preps" aria-pressed="false">
+          Заготовки
+        </button>
+        <button type="button" data-tab="ingredients" aria-pressed="false">
+          Ингредиенты
+        </button>
+        <button type="button" data-tab="results" aria-pressed="false">
+          Готовые расчёты
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Раздел: Напитки -->
+      <section
+        id="tab-drinks"
+        aria-label="Калькулятор напитков"
+        data-active="true"
+      >
+        <h2>Новый напиток</h2>
+
+        <section aria-labelledby="drink-form-title">
+          <h3 id="drink-form-title">Состав напитка</h3>
+
+          <form id="drink-form">
+            <div>
+              <label for="drink-name">Название напитка</label>
+              <input
+                type="text"
+                id="drink-name"
+                name="drinkName"
+                placeholder="Например, Тыквенный латте"
+                required
+              />
+            </div>
+
+            <section aria-labelledby="drink-volumes-title">
+              <h4 id="drink-volumes-title">Объёмы и состав</h4>
+
+              <!-- Объём 250 мл -->
+              <section aria-label="Объём 250 мл" data-volume="250">
+                <h5>Объём 250 мл</h5>
+
+                <p>
+                  Соберите состав напитка для 250 мл. Включите сюда и молоко
+                  (один вид).
+                </p>
+
+                <div id="drink-components-250"></div>
+
+                <button
+                  type="button"
+                  data-target="250"
+                  class="drink-add-component"
+                >
+                  Добавить ингредиент
+                </button>
+
+                <section aria-labelledby="drink-250-result-title">
+                  <h6 id="drink-250-result-title">
+                    КБЖУ на порцию 250 мл (по выбранному молоку)
+                  </h6>
+                  <p>Ккал: <span id="drink-250-kcal">0</span></p>
+                  <p>Белки: <span id="drink-250-protein">0</span> г</p>
+                  <p>Жиры: <span id="drink-250-fat">0</span> г</p>
+                  <p>Углеводы: <span id="drink-250-carbs">0</span> г</p>
+                </section>
+
+                <section aria-labelledby="drink-250-milk-variants-title">
+                  <h6 id="drink-250-milk-variants-title">
+                    Варианты молока для 250 мл
+                  </h6>
+                  <table id="drink-250-milk-variants-table">
+                    <thead>
+                      <tr>
+                        <th>Тип молока</th>
+                        <th>Ккал</th>
+                        <th>Белки</th>
+                        <th>Жиры</th>
+                        <th>Углеводы</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- строки заполнит JS -->
+                    </tbody>
+                  </table>
+                </section>
+              </section>
+
+              <!-- Объём 350 мл -->
+              <section aria-label="Объём 350 мл" data-volume="350">
+                <h5>Объём 350 мл</h5>
+
+                <p>
+                  Соберите состав напитка для 350 мл. Включите сюда и молоко
+                  (один вид).
+                </p>
+
+                <div id="drink-components-350"></div>
+
+                <button
+                  type="button"
+                  data-target="350"
+                  class="drink-add-component"
+                >
+                  Добавить ингредиент
+                </button>
+
+                <section aria-labelledby="drink-350-result-title">
+                  <h6 id="drink-350-result-title">
+                    КБЖУ на порцию 350 мл (по выбранному молоку)
+                  </h6>
+                  <p>Ккал: <span id="drink-350-kcal">0</span></p>
+                  <p>Белки: <span id="drink-350-protein">0</span> г</p>
+                  <p>Жиры: <span id="drink-350-fat">0</span> г</p>
+                  <p>Углеводы: <span id="drink-350-carbs">0</span> г</p>
+                </section>
+
+                <section aria-labelledby="drink-350-milk-variants-title">
+                  <h6 id="drink-350-milk-variants-title">
+                    Варианты молока для 350 мл
+                  </h6>
+                  <table id="drink-350-milk-variants-table">
+                    <thead>
+                      <tr>
+                        <th>Тип молока</th>
+                        <th>Ккал</th>
+                        <th>Белки</th>
+                        <th>Жиры</th>
+                        <th>Углеводы</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- строки заполнит JS -->
+                    </tbody>
+                  </table>
+                </section>
+              </section>
+
+              <!-- Объём 450 мл -->
+              <section aria-label="Объём 450 мл" data-volume="450">
+                <h5>Объём 450 мл</h5>
+
+                <p>
+                  Соберите состав напитка для 450 мл. Включите сюда и молоко
+                  (один вид).
+                </p>
+
+                <div id="drink-components-450"></div>
+
+                <button
+                  type="button"
+                  data-target="450"
+                  class="drink-add-component"
+                >
+                  Добавить ингредиент
+                </button>
+
+                <section aria-labelledby="drink-450-result-title">
+                  <h6 id="drink-450-result-title">
+                    КБЖУ на порцию 450 мл (по выбранному молоку)
+                  </h6>
+                  <p>Ккал: <span id="drink-450-kcal">0</span></p>
+                  <p>Белки: <span id="drink-450-protein">0</span> г</p>
+                  <p>Жиры: <span id="drink-450-fat">0</span> г</p>
+                  <p>Углеводы: <span id="drink-450-carbs">0</span> г</p>
+                </section>
+
+                <section aria-labelledby="drink-450-milk-variants-title">
+                  <h6 id="drink-450-milk-variants-title">
+                    Варианты молока для 450 мл
+                  </h6>
+                  <table id="drink-450-milk-variants-table">
+                    <thead>
+                      <tr>
+                        <th>Тип молока</th>
+                        <th>Ккал</th>
+                        <th>Белки</th>
+                        <th>Жиры</th>
+                        <th>Углеводы</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- строки заполнит JS -->
+                    </tbody>
+                  </table>
+                </section>
+              </section>
+            </section>
+
+            <div>
+              <button type="button" id="drink-calc-btn">
+                Рассчитать все объёмы
+              </button>
+              <button type="button" id="drink-save-result">
+                Сохранить результат
+              </button>
+            </div>
+          </form>
+        </section>
+      </section>
+
+      <!-- Раздел: Заготовки -->
+      <section id="tab-preps" aria-label="Калькулятор заготовок">
+        <h2>Калькулятор заготовок (соусы, сиропы)</h2>
+
+        <section aria-labelledby="prep-form-title">
+          <h3 id="prep-form-title">Новая заготовка</h3>
+
+          <form id="prep-form">
+            <div>
+              <label for="prep-name">Название заготовки</label>
+              <input
+                type="text"
+                id="prep-name"
+                name="prepName"
+                placeholder="Например, Ванильный сироп"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="prep-total-weight">Итоговый вес заготовки (г)</label>
+              <input
+                type="number"
+                id="prep-total-weight"
+                name="totalWeight"
+                min="1"
+                value="1000"
+                required
+              />
+            </div>
+
+            <section aria-labelledby="prep-components-title">
+              <h4 id="prep-components-title">Состав заготовки</h4>
+
+              <div id="prep-components-list">
+                <!-- строки с выбором ингредиента и весом -->
+              </div>
+
+              <button type="button" id="prep-add-component">
+                Добавить ингредиент
+              </button>
+            </section>
+
+            <section aria-labelledby="prep-result-title">
+              <h4 id="prep-result-title">Результат (на 100 г)</h4>
+              <p>Ккал: <span id="prep-kcal">0</span></p>
+              <p>Белки: <span id="prep-protein">0</span> г</p>
+              <p>Жиры: <span id="prep-fat">0</span> г</p>
+              <p>Углеводы: <span id="prep-carbs">0</span> г</p>
+            </section>
+
+            <div>
+              <button type="button" id="prep-calc-btn">
+                Рассчитать
+              </button>
+              <button type="button" id="prep-save-as-ingredient">
+                Сохранить как ингредиент
+              </button>
+            </div>
+          </form>
+        </section>
+      </section>
+
+      <!-- Раздел: Ингредиенты -->
+      <section id="tab-ingredients" aria-label="База ингредиентов">
+        <h2>Ингредиенты (КБЖУ на 100 г)</h2>
+
+        <section aria-labelledby="ingredient-form-title">
+          <h3 id="ingredient-form-title">Добавить ингредиент</h3>
+
+          <form id="ingredient-form">
+            <div>
+              <label for="ingredient-name">Название</label>
+              <input
+                type="text"
+                id="ingredient-name"
+                name="name"
+                placeholder="Например, Молоко обычное"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="ingredient-kcal">Калории (ккал / 100 г)</label>
+              <input
+                type="number"
+                id="ingredient-kcal"
+                name="kcal"
+                min="0"
+                step="0.1"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="ingredient-protein">Белки (г / 100 г)</label>
+              <input
+                type="number"
+                id="ingredient-protein"
+                name="protein"
+                min="0"
+                step="0.1"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="ingredient-fat">Жиры (г / 100 г)</label>
+              <input
+                type="number"
+                id="ingredient-fat"
+                name="fat"
+                min="0"
+                step="0.1"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="ingredient-carbs">Углеводы (г / 100 г)</label>
+              <input
+                type="number"
+                id="ingredient-carbs"
+                name="carbs"
+                min="0"
+                step="0.1"
+                required
+              />
+            </div>
+
+            <div>
+              <button type="submit">Сохранить ингредиент</button>
+              <button type="reset">Очистить форму</button>
+            </div>
+          </form>
+        </section>
+
+        <section aria-labelledby="ingredients-list-title">
+          <h3 id="ingredients-list-title">Список ингредиентов</h3>
+
+          <table id="ingredients-table">
+            <thead>
+              <tr>
+                <th scope="col">Название</th>
+                <th scope="col">Ккал / 100 г</th>
+                <th scope="col">Белки</th>
+                <th scope="col">Жиры</th>
+                <th scope="col">Углеводы</th>
+                <th scope="col">Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Строки будут добавляться скриптом -->
+            </tbody>
+          </table>
+        </section>
+      </section>
+
+      <!-- Раздел: Готовые расчёты -->
+      <section id="tab-results" aria-label="Готовые расчёты">
+        <h2>Готовые расчёты</h2>
+
+        <section aria-labelledby="results-table-title">
+          <h3 id="results-table-title">Сохранённые напитки</h3>
+
+          <table id="results-table">
+            <thead>
+              <tr>
+                <th scope="col">Дата</th>
+                <th scope="col">Название напитка</th>
+                <th scope="col">250 мл (ккал/Б/Ж/У)</th>
+                <th scope="col">350 мл (ккал/Б/Ж/У)</th>
+                <th scope="col">450 мл (ккал/Б/Ж/У)</th>
+                <th scope="col">Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Строки с результатами -->
+            </tbody>
+          </table>
+        </section>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Калькулятор КБЖУ напитков</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
