@@ -1,6 +1,6 @@
 project/
-  index.html        // основной интерфейс (вкладки/разделы)
-  styles.css        // базовые стили
-  app.js            // вся логика
+  index.html        // main interface (tabs/sections)
+  styles.css        // basic styles
+  app.js            // all logic
   data/
-    ingredients.json // стартовый набор продуктов
+    ingredients.json // starter product set
